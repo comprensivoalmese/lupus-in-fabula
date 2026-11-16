@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Officina della scrittura · Wolf Team</title>
+<meta name="description" content="Laboratorio di autocorrezione dei testi basato sulle 4 C: correttezza, chiarezza, coesione, coerenza.">
+<link rel="icon" href="assets/wolfteam.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stile.css">
+</head>
+<body>
+<a class="salta" href="#principale">Vai al contenuto</a>
+<div class="aurora" aria-hidden="true"></div>
+
+<header class="barra">
+  <a class="marchio" href="https://comprensivoalmese.github.io/learning-hub/" aria-label="Wolf Team, Learning Hub">
+    <img src="assets/wolfteam.svg" alt="">
+    <div><b>WOLF <span>TEAM</span></b><small>Istituto Comprensivo di Almese</small></div>
+  </a>
+  <nav aria-label="Sezioni">
+    <a href="#impostazioni">Correggi</a><a href="#guide">Le 4 C e le tipologie</a><a href="#esercizi">Allenati</a>
+  </nav>
+</header>
+
+<div class="legenda" id="legenda" aria-label="Legenda delle 4 C"></div>
+
+<main id="principale">
+
+  <section class="avviso-alunni" id="avvisoAlunni" role="region" aria-labelledby="avvisoTitolo">
+    <h2 id="avvisoTitolo"></h2>
+    <p id="avvisoTesto"></p>
+    <button class="bottone" id="hoCapito" type="button">Ho capito</button>
+  </section>
+
+  <section class="eroe-mini">
+    <span class="occhiello"><i>LABORATORIO</i> Italiano · scuola secondaria di primo grado</span>
+    <h1>Officina della <span class="g">scrittura</span></h1>
+    <p class="intro">Riporta le frasi del tuo tema che l'insegnante ha segnato: insieme scopriamo l'errore e lo correggi tu, passo dopo passo.</p>
+  </section>
+
+  <form class="scheda" id="impostazioni" novalidate>
+    <h2>1 · Chi sei e che testo hai scritto</h2>
+    <div class="riga">
+      <label class="campo-l">Il tuo nome <small>(solo il nome, niente cognome)</small>
+        <input id="nome" type="text" maxlength="30" autocomplete="off" spellcheck="false">
+      </label>
+      <fieldset class="gruppo">
+        <legend>Classe</legend>
+        <label class="chip"><input type="radio" name="classe" value="1" checked> 1ª</label>
+        <label class="chip"><input type="radio" name="classe" value="2"> 2ª</label>
+        <label class="chip"><input type="radio" name="classe" value="3"> 3ª</label>
+      </fieldset>
+    </div>
+
+    <fieldset class="gruppo tipologie-scelta" id="sceltaTipologia" aria-describedby="erroreTipologia">
+      <legend>Tipologia del tema <b class="obbl">(obbligatoria)</b></legend>
+      <div class="griglia-tip" id="grigliaTip"></div>
+      <p class="errore-campo" id="erroreTipologia" role="alert"></p>
+    </fieldset>
+
+    <h2>2 · Cosa vuoi correggere</h2>
+    <div class="schede-modo" role="tablist" aria-label="Modalità">
+      <button type="button" role="tab" id="tabFrasi" aria-selected="true" aria-controls="pannelloFrasi">✏️ Frasi segnate dall'insegnante</button>
+      <button type="button" role="tab" id="tabTema" aria-selected="false" aria-controls="pannelloTema">📄 Tema intero</button>
+    </div>
+
+    <div id="pannelloFrasi" role="tabpanel" aria-labelledby="tabFrasi">
+      <p class="aiuto">Scrivi una frase per riquadro, proprio come l'hai scritta nel tema.</p>
+      <ol class="lista-frasi" id="listaFrasi"></ol>
+      <button type="button" class="pillola" id="aggiungiFrase">+ aggiungi frase</button>
+    </div>
+
+    <div id="pannelloTema" role="tabpanel" aria-labelledby="tabTema" hidden>
+      <label class="campo-l">Traccia del tema <small>(facoltativa: serve a capire se sei andato fuori traccia)</small>
+        <input id="traccia" type="text" maxlength="300">
+      </label>
+      <label class="campo-l">Il tuo tema
+        <textarea id="tema" rows="12" maxlength="4000"></textarea>
+      </label>
+    </div>
+
+    <p class="contatore" id="contatore" aria-live="polite"></p>
+    <div class="azioni">
+      <button class="bottone grande" id="analizza" type="submit">Analizza 🔍</button>
+    </div>
+    <p class="esito" id="esito" role="status" aria-live="polite"></p>
+  </form>
+
+  <section id="risultati" class="risultati" hidden aria-labelledby="titRisultati">
+    <h2 id="titRisultati">3 · Correggi i tuoi errori</h2>
+    <p class="promemoria" id="promemoria"></p>
+    <div id="commento"></div>
+    <div id="frasiRisultato"></div>
+    <div id="lessicoBox"></div>
+  </section>
+
+  <section id="riepilogo" class="scheda" hidden aria-labelledby="titRiepilogo">
+    <h2 id="titRiepilogo">4 · Il tuo riepilogo</h2>
+    <div id="barre" class="barre"></div>
+    <div id="allenati"></div>
+    <div id="schede"></div>
+  </section>
+
+  <section id="esercizi" class="scheda" aria-labelledby="titEsercizi">
+    <h2 id="titEsercizi">5 · Allenati</h2>
+    <p class="aiuto" id="eserciziIntro">Esercizi pronti, con la correzione immediata. Dopo l'analisi ti proponiamo quelli più utili per te.</p>
+    <div class="azioni">
+      <button type="button" class="pillola" id="allenatiTipologie">🧩 Allenati sulle tipologie</button>
+    </div>
+    <div id="listaEsercizi"></div>
+    <p class="punteggio" id="punteggio" aria-live="polite"></p>
+  </section>
+
+  <section class="scheda" id="stampaBox">
+    <h2>6 · Il tuo resoconto</h2>
+    <p class="aiuto">Puoi stamparlo o salvarlo in PDF (nella finestra di stampa scegli «Salva come PDF»).</p>
+    <button type="button" class="bottone" id="stampa">🖨️ Stampa o salva il resoconto</button>
+  </section>
+
+  <section id="guide" class="guide">
+    <details class="apribile" id="guida4c">
+      <summary>Cosa sono le 4 C?</summary>
+      <div id="contenuto4c"></div>
+    </details>
+    <details class="apribile" id="guidaTip">
+      <summary>Le tipologie testuali</summary>
+      <div id="contenutoTip"></div>
+    </details>
+  </section>
+</main>
+
+<div id="resoconto" class="resoconto" aria-hidden="true"></div>
+
+<footer>
+  <div class="piede">
+    <img src="assets/logo-wolfteam-scuro.png" alt="Wolf Team - Istituto Comprensivo di Almese">
+    <div>
+      <p class="credito">Sviluppata dal Wolf Team dell’Istituto Comprensivo di Almese – © 2026 – Tutti i diritti riservati</p>
+      <p>I testi inseriti non vengono salvati: servono solo per la correzione e spariscono quando chiudi la pagina.</p>
+      <p>Contatti: <a href="mailto:wolf@comprensivoalmese.it">wolf@comprensivoalmese.it</a> · <a href="https://www.comprensivoalmese.edu.it/" rel="noopener">comprensivoalmese.edu.it</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

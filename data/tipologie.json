@@ -1,0 +1,152 @@
+{
+  "avviso": {
+    "titolo": "Prima di iniziare, leggi qui 💡",
+    "testo": "Questo correttore usa l'intelligenza artificiale: è un aiuto per capire i tuoi errori, non l'ultima parola. A volte può sbagliare anche lui! Se una spiegazione non ti convince o non coincide con quello che ha segnato l'insegnante, chiedi in classe: ha sempre ragione l'insegnante. Non scrivere il tuo cognome, indirizzi o informazioni personali nelle frasi.",
+    "promemoria": "Correzione automatica: se hai dubbi, chiedi all'insegnante.",
+    "nessun_errore": "Non riesco a trovare l'errore in questa frase. Chiedi all'insegnante di spiegartelo!"
+  },
+
+  "quattro_c": {
+    "correttezza": {
+      "nome": "Correttezza", "icona": "✔️", "colore": "#FF7A93",
+      "definizione": "Il testo rispetta le regole della lingua: ortografia, grammatica, verbi e punteggiatura.",
+      "sbagliato": "Ieri o visto un cane che correvano nel parco",
+      "corretto": "Ieri ho visto un cane che correva nel parco.",
+      "tipi": {
+        "ortografia": { "nome": "Ortografia", "colore": "#FF5C7A" },
+        "morfosintassi": { "nome": "Grammatica (morfosintassi)", "colore": "#FF8FA3" },
+        "tempi_verbali": { "nome": "Tempi verbali", "colore": "#FFB0BF" },
+        "punteggiatura": { "nome": "Punteggiatura", "colore": "#E8668A" }
+      }
+    },
+    "chiarezza": {
+      "nome": "Chiarezza", "icona": "💡", "colore": "#FFC94D",
+      "definizione": "Il lettore capisce subito cosa vuoi dire: frasi non troppo lunghe e parole precise.",
+      "sbagliato": "Ho fatto una cosa bella con delle cose che avevo fatto prima che era bello.",
+      "corretto": "Ho costruito un plastico con i cartoncini che avevo ritagliato il giorno prima.",
+      "tipi": {
+        "sintassi": { "nome": "Costruzione della frase", "colore": "#FFB733" },
+        "lessico": { "nome": "Lessico (parole)", "colore": "#FFDB80" }
+      }
+    },
+    "coesione": {
+      "nome": "Coesione", "icona": "🔗", "colore": "#4BE3A0",
+      "definizione": "Le frasi sono collegate bene tra loro, con i connettivi giusti e i pronomi al posto delle ripetizioni.",
+      "sbagliato": "Ho un cane. Il cane si chiama Rex. Il cane è vivace. Il cane gioca.",
+      "corretto": "Ho un cane che si chiama Rex: è molto vivace e gioca sempre.",
+      "tipi": {
+        "connettivi": { "nome": "Connettivi", "colore": "#2FD68C" },
+        "riferimenti": { "nome": "Pronomi e riferimenti", "colore": "#8AF0C2" }
+      }
+    },
+    "coerenza": {
+      "nome": "Coerenza", "icona": "🧭", "colore": "#A99BFF",
+      "definizione": "Le idee hanno senso, sono in ordine, non si contraddicono, restano nella traccia e rispettano la tipologia del testo.",
+      "sbagliato": "Era una notte buia, senza luna. La luna piena illuminava la strada.",
+      "corretto": "Era una notte buia, senza luna. Solo un vecchio lampione illuminava la strada.",
+      "tipi": {
+        "coerenza": { "nome": "Logica e tipologia", "colore": "#9384FF" },
+        "registro": { "nome": "Registro", "colore": "#C9C0FF" }
+      }
+    }
+  },
+
+  "registri": {
+    "formale": "Formale",
+    "standard": "Standard",
+    "informale": "Informale",
+    "va_bene_in": {
+      "formale": "va bene in una lettera al Dirigente o in un documento ufficiale",
+      "standard": "va bene a scuola, in un tema o in una relazione",
+      "informale": "va bene in un messaggio a un amico"
+    }
+  },
+
+  "tipologie": {
+    "narrativo": {
+      "nome": "Narrativo", "icona": "📖",
+      "definizione": "Racconta una storia, vera o inventata, con personaggi che vivono degli eventi.",
+      "scopo": "Raccontare e intrattenere.",
+      "struttura": "Situazione iniziale → complicazione → sviluppo → conclusione.",
+      "lingua": "Verbi al passato (passato remoto e imperfetto) o al presente; connettivi di tempo (un giorno, poi, all'improvviso, alla fine); dialoghi.",
+      "esempio": "Un giorno Luca trovò una vecchia chiave in giardino. Incuriosito, provò ad aprire la soffitta: la porta si aprì cigolando.",
+      "criteri": [
+        "L'ordine degli eventi è chiaro",
+        "I tempi del racconto sono coerenti (passato remoto/imperfetto oppure presente, senza salti)",
+        "Il narratore e il punto di vista restano gli stessi",
+        "I personaggi si comportano in modo coerente"
+      ],
+      "registro_consigliato": "standard",
+      "registro_note": "Nel racconto il registro è libero: la voce narrante usa di solito il registro standard, i dialoghi possono essere anche informali."
+    },
+    "descrittivo": {
+      "nome": "Descrittivo", "icona": "🖼️",
+      "definizione": "Descrive come è fatto qualcuno o qualcosa: una persona, un luogo, un animale, un oggetto.",
+      "scopo": "Far \"vedere\" al lettore ciò che descrivi.",
+      "struttura": "Presentazione generale → particolari in un ordine preciso → impressione finale.",
+      "lingua": "Aggettivi precisi, dati dei cinque sensi, indicatori di luogo (a destra, in alto, sullo sfondo), verbi al presente o all'imperfetto.",
+      "esempio": "La mia stanza è piccola e luminosa. A destra c'è il letto, sopra il letto una mensola piena di libri; di fronte, la finestra si apre sul cortile.",
+      "criteri": [
+        "C'è un ordine spaziale o logico (dall'alto in basso, dal generale al particolare)",
+        "Ci sono dati sensoriali (vista, udito, olfatto, tatto, gusto)",
+        "La descrizione resta oggettiva oppure soggettiva, senza mescolarle a caso"
+      ],
+      "registro_consigliato": "standard",
+      "registro_note": "Nella descrizione si usa il registro standard, con parole precise."
+    },
+    "informativo": {
+      "nome": "Informativo", "icona": "📰",
+      "definizione": "Dà informazioni vere e verificabili su un argomento.",
+      "scopo": "Far conoscere qualcosa al lettore.",
+      "struttura": "Introduzione dell'argomento → informazioni divise per aspetti → conclusione o sintesi.",
+      "lingua": "Terza persona, verbi al presente, lessico specifico, connettivi come inoltre, infatti, per esempio.",
+      "esempio": "Il lupo è un mammifero carnivoro. Vive in branchi e si nutre soprattutto di cervi e cinghiali. In Italia è una specie protetta.",
+      "criteri": [
+        "Il testo è oggettivo, in terza persona",
+        "Non ci sono opinioni personali",
+        "Le informazioni sono ordinate",
+        "Si usa un lessico specifico"
+      ],
+      "registro_consigliato": "standard",
+      "registro_note": "In un testo informativo si usa il registro standard-formale: niente espressioni colloquiali."
+    },
+    "regolativo": {
+      "nome": "Regolativo", "icona": "📋",
+      "definizione": "Spiega come fare qualcosa o quali regole seguire: ricette, istruzioni, regolamenti.",
+      "scopo": "Guidare il lettore a fare qualcosa nel modo giusto.",
+      "struttura": "Scopo → materiali o occorrente → azioni in sequenza → eventuali avvertenze.",
+      "lingua": "Imperativo (mescola) oppure infinito (mescolare), sempre lo stesso; numeri e misure precise; connettivi di sequenza (prima, poi, infine).",
+      "esempio": "Riempi la pentola d'acqua. Portala a ebollizione, aggiungi il sale e versa la pasta. Scolala quando è cotta.",
+      "criteri": [
+        "Le azioni sono in sequenza ordinata",
+        "Imperativo o infinito sono usati in modo costante",
+        "Le istruzioni sono complete e precise"
+      ],
+      "registro_consigliato": "standard",
+      "registro_note": "Nelle istruzioni si usa il registro standard, chiaro e preciso."
+    },
+    "argomentativo": {
+      "nome": "Argomentativo", "icona": "⚖️",
+      "definizione": "Sostiene un'opinione (la tesi) con ragioni (gli argomenti) per convincere il lettore.",
+      "scopo": "Convincere qualcuno della propria idea.",
+      "struttura": "Tesi → argomenti a sostegno → antitesi → confutazione → conclusione.",
+      "lingua": "Connettivi argomentativi (secondo me, infatti, inoltre, tuttavia, però, quindi, in conclusione); esempi e dati.",
+      "esempio": "Secondo me la ricreazione dovrebbe durare di più. Infatti dopo una pausa si torna più concentrati. Qualcuno dice che si perde tempo, ma pochi minuti in più non tolgono nulla alle lezioni.",
+      "criteri": [
+        "La tesi è chiara",
+        "Ci sono argomenti a sostegno della tesi",
+        "C'è un'antitesi con la sua confutazione",
+        "La conclusione è coerente con la tesi",
+        "Si usano connettivi argomentativi"
+      ],
+      "registro_consigliato": "standard",
+      "registro_note": "In un testo argomentativo si usa il registro standard-formale."
+    }
+  },
+
+  "classi": {
+    "1": "Prima media: spiegazioni semplicissime, esempi concreti, regole di base.",
+    "2": "Seconda media: spiegazioni semplici con il nome della regola grammaticale.",
+    "3": "Terza media: spiegazioni più complete, con il nome della regola e un piccolo approfondimento."
+  }
+}

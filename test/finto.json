@@ -1,0 +1,46 @@
+{
+  "frasi": [
+    {"frase_originale":"Ieri o visto un cane che correvano nel parco.","errore_trovato":true,"errori":[
+      {"parte_errata":"o visto","c":"correttezza","tipo":"ortografia","indizio":"«o» qui è un verbo: quale verbo è? Come si scrive?","spiegazione":"È il verbo avere: si scrive «ho», con l'h.","proposta_corretta":"Ieri ho visto un cane…"},
+      {"parte_errata":"correvano","c":"correttezza","tipo":"morfosintassi","indizio":"Quanti cani correvano? Il verbo è d'accordo con il soggetto?","spiegazione":"Il cane è uno solo: il verbo va al singolare (correva).","proposta_corretta":"…un cane che correva nel parco."}],
+     "registri":{"formale":"Ieri ho osservato un cane che correva nel parco.","standard":"Ieri ho visto un cane che correva nel parco.","informale":"Ieri ho beccato un cane che correva al parco.","adatto":"standard","perche":"Nella voce narrante del racconto si usa il registro standard."}},
+    {"frase_originale":"Quando arrivai a casa, la mamma mi dice che era tardi.","errore_trovato":true,"errori":[
+      {"parte_errata":"mi dice","c":"correttezza","tipo":"tempi_verbali","indizio":"«Arrivai» è al passato: anche «dice» è al passato?","spiegazione":"Il racconto è al passato remoto: «mi disse».","proposta_corretta":"Quando arrivai a casa, la mamma mi disse che era tardi."}],
+     "registri":{"formale":"Quando giunsi a casa, mia madre mi fece notare che era tardi.","standard":"Quando arrivai a casa, la mamma mi disse che era tardi.","informale":"Appena arrivato a casa, la mamma mi fa: «È tardissimo!»","adatto":"standard","perche":"Nel racconto i tempi devono restare al passato e il registro standard è il più adatto."}},
+    {"frase_originale":"Il ragazzo che gli ho prestato la bici abita lì.","errore_trovato":true,"errori":[
+      {"parte_errata":"che gli","c":"chiarezza","tipo":"sintassi","indizio":"Hai prestato la bici A qualcuno: quale parola collega bene le due frasi?","spiegazione":"È un «che» polivalente: serve «a cui».","proposta_corretta":"Il ragazzo a cui ho prestato la bici abita lì."}],
+     "registri":{"formale":"Il ragazzo al quale ho prestato la bicicletta risiede lì.","standard":"Il ragazzo a cui ho prestato la bici abita lì.","informale":"Quello a cui ho dato la bici sta lì.","adatto":"standard","perche":"In un racconto la voce narrante usa il registro standard."}},
+    {"frase_originale":"La gita è stata bella e il pranzo era bello.","errore_trovato":true,"errori":[
+      {"parte_errata":"bello","c":"chiarezza","tipo":"lessico","indizio":"Hai usato due volte la stessa parola: com'era il pranzo, di preciso?","spiegazione":"«Bello» è ripetuto ed è generico: scegli una parola più precisa.","proposta_corretta":"La gita è stata divertente e il pranzo era squisito."}],
+     "registri":{"formale":"La gita si è rivelata piacevole e il pranzo eccellente.","standard":"La gita è stata divertente e il pranzo era squisito.","informale":"La gita è stata una figata e il pranzo top.","adatto":"standard","perche":"Nella narrazione il registro standard è il più adatto."}},
+    {"frase_originale":"Luca ha visto Marco e lui era felice.","errore_trovato":true,"errori":[
+      {"parte_errata":"lui","c":"coesione","tipo":"riferimenti","indizio":"Chi era felice: Luca o Marco? Il lettore lo capisce?","spiegazione":"Il pronome «lui» è ambiguo: scrivi il nome.","proposta_corretta":"Luca ha visto Marco, che era felice."}],
+     "registri":{"formale":"Luca ha incontrato Marco, il quale appariva felice.","standard":"Luca ha visto Marco, che era felice.","informale":"Luca ha visto Marco, che era tutto contento.","adatto":"standard","perche":"Nel racconto si usa il registro standard."}},
+    {"frase_originale":"Pioveva forte, quindi siamo usciti senza ombrello.","errore_trovato":true,"errori":[
+      {"parte_errata":"quindi","c":"coesione","tipo":"connettivi","indizio":"Uscire senza ombrello è una conseguenza della pioggia o il contrario di ciò che ci si aspetta?","spiegazione":"«Quindi» indica una conseguenza; qui serve un connettivo che oppone: «eppure», «ma».","proposta_corretta":"Pioveva forte, eppure siamo usciti senza ombrello."}],
+     "registri":{"formale":"Pioveva intensamente, tuttavia uscimmo privi di ombrello.","standard":"Pioveva forte, eppure siamo usciti senza ombrello.","informale":"Diluviava, ma siamo usciti lo stesso senza ombrello.","adatto":"standard","perche":"Nel racconto si usa il registro standard."}},
+    {"frase_originale":"Il castello era buio pesto e il sole illuminava ogni stanza.","errore_trovato":true,"errori":[
+      {"parte_errata":"il sole illuminava ogni stanza","c":"coerenza","tipo":"coerenza","indizio":"Può essere buio pesto se il sole illumina tutto?","spiegazione":"Le due informazioni si contraddicono: in un racconto i fatti devono essere coerenti tra loro.","proposta_corretta":"Il castello era buio pesto: solo una candela illuminava il corridoio."}],
+     "registri":{"formale":"Il castello era immerso nell'oscurità più completa.","standard":"Il castello era buio pesto: solo una candela illuminava il corridoio.","informale":"Nel castello non si vedeva un tubo.","adatto":"standard","perche":"La voce narrante usa il registro standard."}},
+    {"frase_originale":"Il prof ci ha detto che la verifica era una roba facilissima.","errore_trovato":true,"errori":[
+      {"parte_errata":"una roba","c":"coerenza","tipo":"registro","indizio":"Scriveresti «roba» in un tema? C'è una parola meno colloquiale?","spiegazione":"«Roba» e «prof» sono colloquiali: nella voce narrante usa il registro standard.","proposta_corretta":"Il professore ci ha detto che la verifica era facilissima."}],
+     "registri":{"formale":"Il docente ci ha comunicato che la prova sarebbe stata molto semplice.","standard":"Il professore ci ha detto che la verifica era facilissima.","informale":"Il prof ci ha detto che la verifica era una passeggiata.","adatto":"standard","perche":"In un racconto la voce narrante usa il registro standard; l'informale va bene nei dialoghi."}},
+    {"frase_originale":"Il cielo era grigio e tirava vento.","errore_trovato":false,"errori":[],"registri":null}
+  ],
+  "lessico":[
+    {"parola":"bello","ripetizioni":2,"sinonimi":["piacevole","divertente","squisito","gustoso"]},
+    {"parola":"roba","ripetizioni":1,"sinonimi":["cosa","prova","compito"]}
+  ],
+  "scheda_4c":{
+    "correttezza":{"punto_di_forza":"Usi bene le maiuscole e i punti.","consiglio":"Ricontrolla l'h del verbo avere."},
+    "chiarezza":{"punto_di_forza":"Le frasi sono brevi e si leggono bene.","consiglio":"Cerca parole più precise di «bello»."},
+    "coesione":{"punto_di_forza":"Usi connettivi di tempo come «quando».","consiglio":"Quando ci sono due persone, scrivi il nome invece di «lui»."},
+    "coerenza":{"punto_di_forza":"La storia ha un inizio chiaro.","consiglio":"Controlla che i fatti non si contraddicano."}
+  },
+  "scheda_tipologia":{
+    "criteri_rispettati":["L'ordine degli eventi è chiaro","I personaggi si comportano in modo coerente"],
+    "criteri_da_migliorare":["I tempi del racconto sono coerenti (passato remoto/imperfetto oppure presente, senza salti)"]
+  },
+  "categorie_da_esercitare":["ortografia","tempi_verbali","connettivi","registro"],
+  "commento_positivo":"Il tuo racconto ha un'idea originale e frasi vivaci: con poche correzioni diventa ancora più bello da leggere!"
+}
