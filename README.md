@@ -1,55 +1,30 @@
-# Officina della scrittura — istruzioni per i docenti
+# Officina della scrittura
 
-Laboratorio di autocorrezione basato sulle 4 C (Correttezza, Chiarezza, Coesione, Coerenza).
-La pagina è pubblica su GitHub Pages. L'intelligenza artificiale viene chiamata da un piccolo programma, il **worker**, che sta su Cloudflare e custodisce la chiave segreta. Nessun testo viene salvato.
+Laboratorio di autocorrezione per la scuola media, basato sulle 4 C (Correttezza, Chiarezza, Coesione, Coerenza).
 
-## 1. Pubblicare il worker su Cloudflare (una volta sola)
-1. Crea un account gratuito su <https://dash.cloudflare.com/sign-up>.
-2. Nel menu a sinistra: **Compute (Workers)** → **Workers & Pages** → **Create** → **Create Worker** (va bene "Hello World").
-3. Dagli un nome, per esempio `officina-scrittura`, e premi **Deploy**.
-4. Premi **Edit code**, cancella tutto, incolla il contenuto del file `worker/worker.js` e premi **Deploy**.
-5. Copia l'indirizzo del worker (tipo `https://officina-scrittura.NOME.workers.dev`).
-6. Apri `app.js`: nella riga `var WORKER_URL = ...` (in alto) metti quell'indirizzo tra gli apici. Poi ricarica `app.js` su GitHub.
+**Indirizzo per gli alunni:** <https://comprensivoalmese.github.io/lupus-in-fabula/>
 
-## 2. Dove incollare la chiave dell'IA
-1. Prendi una chiave Gemini gratuita su <https://aistudio.google.com/apikey>.
-2. Su Cloudflare apri il worker → **Settings** → **Variables and Secrets** → **Add**.
-3. Tipo **Secret**, nome `API_KEY`, valore: incolla la chiave → **Deploy**.
-La chiave non va MAI scritta nei file del sito.
+## Come si usa in classe
+1. L'alunno sceglie la classe e la tipologia del tema.
+2. Riporta le frasi che avete segnato, una per riquadro. Nel campo «Cosa ha segnato l'insegnante?» scrive la parola sottolineata e il tipo di errore (ortografia, punteggiatura, morfologia, sintassi, lessico…).
+3. Il correttore evidenzia l'errore e dà un indizio. L'alunno riscrive la frase e la fa verificare; poi vede la spiegazione e la frase nei tre registri.
+4. Alla fine trova un riepilogo, degli esercizi mirati e un resoconto da stampare o salvare in PDF.
 
-## 3. Cambiare IA (passare a Claude)
-Nel worker, in alto, cambia `const PROVIDER = "gemini";` in `const PROVIDER = "claude";`, poi **Deploy**.
-Sostituisci il secret `API_KEY` con una chiave Anthropic (<https://console.anthropic.com>).
-I nomi dei modelli sono nelle righe `GEMINI_MODEL` e `CLAUDE_MODEL`.
+Non serve nessun account. I testi non vengono salvati. L'avviso iniziale ricorda agli alunni che la correzione è automatica e che **ha sempre ragione l'insegnante**.
 
-## 4. Aggiungere esercizi
-File `data/esercizi.json`. Copia un esercizio simile e cambia `id` (deve essere unico) e i testi.
-- `c`: correttezza, chiarezza, coesione, coerenza · `tipo`: uno dei 10 tipi · `classe`: per esempio `[1,2,3]` · `tipologia`: solo per gli esercizi sulle tipologie.
-- `formato`:
-  - `scelta`: `opzioni` + `corretta`, cioè la posizione della risposta giusta (la prima è 0);
-  - `completa`: `testo` con `___` + `risposte` accettate;
-  - `riscrivi`: `frase` + `soluzione`;
-  - `riordina`: `elementi` già nell'ordine giusto (la pagina li mescola).
-- Attenzione alle virgole e alle virgolette: per controllare che il file sia scritto bene puoi incollarlo su <https://jsonlint.com>.
+## Cosa potete modificare voi
+Tutto si cambia su GitHub, senza toccare il programma: aprite il file → ✏️ **Edit** → modificate → **Commit changes**. Le modifiche sono attive dopo pochi minuti. Per modificare dovete avere accesso al repository dell'Istituto.
 
-## 5. Modificare criteri, tipologie e avviso
-File `data/tipologie.json`:
-- `avviso`: testo del riquadro iniziale, promemoria e messaggio "errore non trovato";
-- `tipologie`: definizione, struttura, esempio, **criteri** (vengono passati all'IA) e registro consigliato;
-- `quattro_c`: definizioni, esempi e colori delle 4 C.
+| Cosa | File | Come |
+|---|---|---|
+| **Errori veri trovati nei temi**, per rendere il correttore più preciso | `data/casi.json` | Copiate un blocco `{ … }`, mettetelo dopo l'ultimo (separato da una virgola) e scrivete frase, tipo, sottotipo, spiegazione e correzione. Niente nomi degli alunni. |
+| **Le vostre sigle** di correzione (es. «rip.», «anac.») | `data/tipologie.json`, voce `sigle_insegnante` | Aggiungete `"sigla": "tipo di errore"`. |
+| **Dettagli degli errori** (es. ortografia → apostrofo, doppie…) | `data/tipologie.json`, voce `particolari` | Aggiungete una voce all'elenco. |
+| **Criteri delle tipologie**, definizioni ed esempi | `data/tipologie.json`, voce `tipologie` | I criteri vengono usati dal correttore per giudicare la coerenza. |
+| **Testo dell'avviso** per gli alunni | `data/tipologie.json`, voce `avviso` | |
+| **Esercizi** | `data/esercizi.json` | Copiate un esercizio dello stesso tipo e cambiate `id` (deve essere unico) e i testi. |
 
-## 6. Insegnare al correttore con gli errori veri dei temi
-L'IA non impara da sola e l'app non salva le frasi degli alunni. Potete però darle **esempi**: li legge a ogni analisi. Le modifiche valgono dopo circa 5 minuti e non serve ripubblicare il worker.
-- **`data/casi.json`, il quaderno dei casi-guida.** Quando trovate un errore tipico in un tema, copiate un blocco e scrivete la frase, il tipo, il sottotipo, la spiegazione e la correzione. Il correttore riconoscerà meglio quel tipo di errore e lo spiegherà con il vostro stile. Usa gli ultimi 40 casi. Niente nomi veri degli alunni.
-- **`particolari` in `data/tipologie.json`.** Sono i sottotipi di ogni errore (es. ortografia → apostrofo, doppie, h…). Compaiono sull'etichetta dell'errore e nella guida «Cosa sono le 4 C?». Potete aggiungerne.
-- **`sigle_insegnante` in `data/tipologie.json`.** Sono le parole o le sigle che scrivete sul tema (ortografia, punteggiatura, morfologia, sintassi, lessico, «rip.», «anac.»…) con il tipo di errore corrispondente. L'alunno le riporta nel campo «Cosa ha segnato l'insegnante?».
-- Per modificare un file su GitHub: apritelo → ✏️ (Edit) → cambiate → **Commit changes**.
+**Attenzione a virgole e virgolette:** un errore di scrittura in un file blocca la pagina. Prima di salvare potete incollare il testo su <https://jsonlint.com> per controllarlo. Se qualcosa si rompe, su GitHub il pulsante **History** del file permette di tornare alla versione precedente.
 
-## 6b. Proponi sinonimi
-Nella pagina c'è il riquadro «Proponi sinonimi»: l'alunno scrive una parola (e, se vuole, la frase in cui l'ha usata) e l'IA propone 4-6 alternative, con significato, esempio e registro. Le istruzioni per l'IA sono nel worker, nella funzione `promptSinonimi`.
-
-## 7. Provare in locale (facoltativo)
-Con Node.js installato: `node test/server.js` e apri <http://localhost:8787>. Risponde un correttore finto (`test/finto.json`), senza IA.
-
-## 8. Pubblicare su GitHub
-Carica tutti i file (tranne, se volete, la cartella `test`) con **Add file → Upload files**. Poi vai su **Settings → Pages**, scegli il branch **main** e premi **Save**.
+## Se il correttore non risponde
+Di solito è un sovraccarico momentaneo di Google: basta riprovare dopo un minuto, il testo scritto non si perde. Se il problema continua, avvisate chi gestisce il sito (le istruzioni tecniche sono in `TECNICO.md`).
