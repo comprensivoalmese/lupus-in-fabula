@@ -1,30 +1,41 @@
-# Officina della scrittura
+# Officina della scrittura ✏️
 
-Laboratorio di autocorrezione per la scuola media, basato sulle 4 C (Correttezza, Chiarezza, Coesione, Coerenza).
+Un laboratorio online per **imparare dai propri errori di scrittura**, pensato per gli alunni della scuola secondaria di primo grado (11-14 anni).
 
-**Indirizzo per gli alunni:** <https://comprensivoalmese.github.io/lupus-in-fabula/>
+👉 **Apri l'app:** <https://comprensivoalmese.github.io/lupus-in-fabula/>
 
-## Come si usa in classe
-1. L'alunno sceglie la classe e la tipologia del tema.
-2. Riporta le frasi che avete segnato, una per riquadro. Nel campo «Cosa ha segnato l'insegnante?» scrive la parola sottolineata e il tipo di errore (ortografia, punteggiatura, morfologia, sintassi, lessico…).
-3. Il correttore evidenzia l'errore e dà un indizio. L'alunno riscrive la frase e la fa verificare; poi vede la spiegazione e la frase nei tre registri.
-4. Alla fine trova un riepilogo, degli esercizi mirati e un resoconto da stampare o salvare in PDF.
+Funziona su computer e tablet, senza registrazione e senza installare niente.
 
-Non serve nessun account. I testi non vengono salvati. L'avviso iniziale ricorda agli alunni che la correzione è automatica e che **ha sempre ragione l'insegnante**.
+## A cosa serve
+Quando l'insegnante ti restituisce il tema con alcune frasi segnate, l'Officina ti aiuta a capire **che errore hai fatto e perché**, e ti guida a correggerlo **da solo**: prima ti dà un indizio, poi controlla la tua correzione.
 
-## Cosa potete modificare voi
-Tutto si cambia su GitHub, senza toccare il programma: aprite il file → ✏️ **Edit** → modificate → **Commit changes**. Le modifiche sono attive dopo pochi minuti. Per modificare dovete avere accesso al repository dell'Istituto.
+Gli errori sono divisi nelle **4 C** di un buon testo, ognuna con il suo colore:
 
-| Cosa | File | Come |
+| | C | Cosa controlla |
 |---|---|---|
-| **Errori veri trovati nei temi**, per rendere il correttore più preciso | `data/casi.json` | Copiate un blocco `{ … }`, mettetelo dopo l'ultimo (separato da una virgola) e scrivete frase, tipo, sottotipo, spiegazione e correzione. Niente nomi degli alunni. |
-| **Le vostre sigle** di correzione (es. «rip.», «anac.») | `data/tipologie.json`, voce `sigle_insegnante` | Aggiungete `"sigla": "tipo di errore"`. |
-| **Dettagli degli errori** (es. ortografia → apostrofo, doppie…) | `data/tipologie.json`, voce `particolari` | Aggiungete una voce all'elenco. |
-| **Criteri delle tipologie**, definizioni ed esempi | `data/tipologie.json`, voce `tipologie` | I criteri vengono usati dal correttore per giudicare la coerenza. |
-| **Testo dell'avviso** per gli alunni | `data/tipologie.json`, voce `avviso` | |
-| **Esercizi** | `data/esercizi.json` | Copiate un esercizio dello stesso tipo e cambiate `id` (deve essere unico) e i testi. |
+| ✔️ | **Correttezza** | ortografia, morfologia, tempi verbali, punteggiatura |
+| 💡 | **Chiarezza** | costruzione della frase, scelta delle parole |
+| 🔗 | **Coesione** | connettivi, pronomi e collegamenti tra le frasi |
+| 🧭 | **Coerenza** | logica delle idee, rispetto della traccia e della tipologia, registro |
 
-**Attenzione a virgole e virgolette:** un errore di scrittura in un file blocca la pagina. Prima di salvare potete incollare il testo su <https://jsonlint.com> per controllarlo. Se qualcosa si rompe, su GitHub il pulsante **History** del file permette di tornare alla versione precedente.
+## Come si usa
+1. **Scegli la classe e la tipologia** del tuo tema: narrativo, descrittivo, informativo, regolativo o argomentativo.
+2. **Scrivi le frasi segnate dall'insegnante**, una per riquadro. Se vuoi, aggiungi cosa ha segnato l'insegnante (per esempio «ortografia» o la parola sottolineata) e la frase prima o dopo.
+   Puoi anche incollare il **tema intero**, con la traccia.
+3. Premi **Analizza**. La parte sbagliata viene colorata e ricevi un **indizio**, una domanda che ti fa ragionare.
+4. **Riscrivi la frase** e premi **Verifica la mia frase**. Dopo il tuo tentativo, o con **Mostra la soluzione**, vedi la spiegazione e la frase scritta in tre modi: formale, standard e informale.
+5. Guarda il **riepilogo**, cioè quanti errori hai fatto per ogni C e su quale allenarti di più.
+6. Fai gli **esercizi** proposti per te, con la correzione immediata. Puoi anche allenarti sulle tipologie testuali quando vuoi.
+7. **Stampa o salva in PDF** il tuo resoconto da consegnare o da tenere.
 
-## Se il correttore non risponde
-Di solito è un sovraccarico momentaneo di Google: basta riprovare dopo un minuto, il testo scritto non si perde. Se il problema continua, avvisate chi gestisce il sito (le istruzioni tecniche sono in `TECNICO.md`).
+Ci sono anche:
+- **Proponi sinonimi**, per trovare parole più precise al posto di quelle ripetute o generiche (cosa, fare, bello…);
+- **Cosa sono le 4 C?** e **Le tipologie testuali**, spiegazioni con esempi.
+
+## Da sapere prima di iniziare 💡
+- Il correttore usa l'**intelligenza artificiale**: è un aiuto, non l'ultima parola, e a volte può sbagliare. Se una spiegazione non ti convince, chiedi in classe: **ha sempre ragione l'insegnante**.
+- **Non scrivere il tuo cognome, indirizzi o altre informazioni personali** nelle frasi. Nel resoconto basta il nome.
+- I tuoi testi **non vengono salvati**: servono solo per la correzione e spariscono quando chiudi la pagina.
+
+---
+Realizzato dal Wolf Team dell'Istituto Comprensivo di Almese. Le istruzioni per docenti e gestori del sito sono in [TECNICO.md](TECNICO.md).
