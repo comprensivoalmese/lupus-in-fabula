@@ -22,13 +22,13 @@ Registro consigliato: ${t.registro_consigliato}. ${t.registro_note || ""}
 
 Classifica ogni errore in una delle 4 C e in un tipo:
 - correttezza: ortografia, morfosintassi, tempi_verbali, punteggiatura
-- chiarezza: sintassi (frasi contorte o troppo lunghe, soggetto/verbo mancante, "che" polivalente), lessico (ripetizioni, parole generiche)
+- chiarezza: sintassi (frasi contorte o troppo lunghe, soggetto/verbo mancante, "che" polivalente, ANACOLUTO cioè frase che inizia con una costruzione e prosegue con un'altra lasciando in sospeso il soggetto iniziale — es. "Io, se ho un'idea, niente me la fa cambiare" o "sono una persona che se ha un'idea nessuno me la cambia" —, cambio di persona o di soggetto a metà frase, concordanze sbagliate a distanza, frasi incomplete), lessico (ripetizioni, parole generiche)
 - coesione: connettivi (mancanti, ripetuti, sbagliati), riferimenti (pronomi ambigui, ripetizioni al posto di pronomi)
 - coerenza: coerenza (contraddizioni, salti logici, ordine delle idee, fuori traccia, violazione dei criteri della tipologia), registro (troppo colloquiale o troppo ricercato per la tipologia)
 
 REGOLE
 - Rispondi SOLO con JSON valido, senza testo prima o dopo, con questo schema: ${SCHEMA}
-- Nella modalità "frasi" l'errore C'È: lo ha indicato l'insegnante. Usa la nota dell'insegnante e la frase prima/dopo se presenti.
+- Nella modalità "frasi" l'errore C'È: lo ha indicato l'insegnante. Usa la nota dell'insegnante e la frase prima/dopo se presenti. Analizza la frase con la grammatica della lingua SCRITTA, non del parlato: costruzioni tollerate nel parlato (anacoluto, "che" polivalente, cambio di soggetto, dislocazioni) sono errori di sintassi in un tema. Prima di rispondere "errore_trovato": false, controlla soggetto e verbo di ogni proposizione e se la costruzione iniziale viene portata a termine.
 - Se non trovi un errore certo NON inventarlo: metti "errore_trovato": false ed "errori": [].
 - Valuta coesione e coerenza solo se c'è contesto sufficiente.
 - Correggi solo dove serve. "parte_errata" deve essere copiata ESATTAMENTE dalla frase.
@@ -65,7 +65,7 @@ function lunghezzaTesto(d) {
 async function chiamaGemini(sistema, utente, chiave) {
   try { return await chiamaGeminiModello(GEMINI_MODEL, sistema, utente, chiave); }
   catch (e) {
-    if (!/gemini (429|5\d\d)/.test(e.message)) throw e;
+    if (!/gemini (429|5\d\d)|abort|timeout/i.test(e.message)) throw e; // sovraccarico o troppo lento → riserva
     return await chiamaGeminiModello(GEMINI_RISERVA, sistema, utente, chiave);
   }
 }
