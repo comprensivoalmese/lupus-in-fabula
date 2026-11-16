@@ -101,7 +101,7 @@
     var lista = $('listaFrasi');
     var li = el('li', null,
       '<label class="campo-l">Frase<textarea class="f-frase" rows="2" maxlength="600"></textarea></label>' +
-      '<label class="campo-l">Cosa ha segnato l\'insegnante? <small>(facoltativo: la parola sottolineata o la sigla)</small><input type="text" class="f-nota" maxlength="120"></label>' +
+      '<label class="campo-l">Cosa ha segnato l\'insegnante? <small>(facoltativo: la parola sottolineata e il tipo di errore, es. «ortografia», «sintassi», «lessico»)</small><input type="text" class="f-nota" maxlength="120"></label>' +
       '<details><summary>Frase prima / frase dopo <small>(facoltativo: aiuta a capire il collegamento)</small></summary><div class="doppio">' +
       '<label class="campo-l">Frase prima<input type="text" class="f-prima" maxlength="400"></label>' +
       '<label class="campo-l">Frase dopo<input type="text" class="f-dopo" maxlength="400"></label></div></details>' +
@@ -252,7 +252,7 @@
       }
       var html = '<p class="frase-orig">' + evidenzia(f.frase_originale, f.errori) + '</p>';
       f.errori.forEach(function (e) {
-        html += '<div class="err" style="--cc:' + colTipo(e.c, e.tipo) + '">' + etichettaC(e.c) + '<span class="etichetta tipo">' + esc(nomeTipo(e.tipo)) + '</span>' +
+        html += '<div class="err" style="--cc:' + colTipo(e.c, e.tipo) + '">' + etichettaC(e.c) + '<span class="etichetta tipo">' + esc(nomeTipo(e.tipo)) + (e.sottotipo ? ' · ' + esc(e.sottotipo) : '') + '</span>' +
           (e.parte_errata ? ' su «<b>' + esc(e.parte_errata) + '</b>»' : '') +
           '<p class="indizio">🤔 <b>Indizio:</b> ' + esc(e.indizio) + '</p></div>';
       });
@@ -472,7 +472,9 @@
     $('contenuto4c').innerHTML = C_ORD.map(function (c) {
       var x = C(c);
       return '<div class="guida-c" style="--cc:' + x.colore + '"><h3>' + x.icona + ' ' + esc(x.nome) + '</h3><p>' + esc(x.definizione) + '</p>' +
-        '<p><small>Cosa controlla: ' + Object.keys(x.tipi).map(function (t) { return esc(x.tipi[t].nome); }).join(', ') + '</small></p>' +
+        '<ul class="particolari">' + Object.keys(x.tipi).map(function (t) {
+          var y = x.tipi[t]; return '<li><b>' + esc(y.nome) + '</b>' + (y.particolari ? ': ' + esc(y.particolari.join(', ')) : '') + '</li>';
+        }).join('') + '</ul>' +
         '<p class="ko-es">❌ ' + esc(x.sbagliato) + '</p><p class="ok-es">✅ ' + esc(x.corretto) + '</p></div>';
     }).join('');
     $('contenutoTip').innerHTML = Object.keys(D.tip.tipologie).map(function (id) {
@@ -497,7 +499,7 @@
         h += '<div class="f"><p><b>Frase originale:</b> ' + esc(f.frase_originale) + '</p>';
         if (!f.errore_trovato) h += '<p><i>' + esc(D.tip.avviso.nessun_errore) + '</i></p>';
         (f.errori || []).forEach(function (e) {
-          h += '<p><span class="cc">' + esc(C(e.c).nome) + '</span> ' + esc(nomeTipo(e.tipo)) + (e.parte_errata ? ' («' + esc(e.parte_errata) + '»)' : '') + ': ' + esc(e.spiegazione) + '</p>';
+          h += '<p><span class="cc">' + esc(C(e.c).nome) + '</span> ' + esc(nomeTipo(e.tipo)) + (e.sottotipo ? ' · ' + esc(e.sottotipo) : '') + (e.parte_errata ? ' («' + esc(e.parte_errata) + '»)' : '') + ': ' + esc(e.spiegazione) + '</p>';
         });
         var risc = ($('prova' + i) && $('prova' + i).value.trim()) || p.riscritta;
         if (f.errore_trovato) h += '<p><b>La mia frase riscritta:</b> ' + (risc && risc !== f.frase_originale ? esc(risc) : '<i>non ancora riscritta</i>') + (p.esito ? ' (' + esc(p.esito) + ')' : '') + '</p>';

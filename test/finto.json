@@ -1,7 +1,7 @@
 {
   "frasi": [
     {"frase_originale":"Ieri o visto un cane che correvano nel parco.","errore_trovato":true,"errori":[
-      {"parte_errata":"o visto","c":"correttezza","tipo":"ortografia","indizio":"«o» qui è un verbo: quale verbo è? Come si scrive?","spiegazione":"È il verbo avere: si scrive «ho», con l'h.","proposta_corretta":"Ieri ho visto un cane…"},
+      {"parte_errata":"o visto","c":"correttezza","tipo":"ortografia","sottotipo":"h del verbo avere","indizio":"«o» qui è un verbo: quale verbo è? Come si scrive?","spiegazione":"È il verbo avere: si scrive «ho», con l'h.","proposta_corretta":"Ieri ho visto un cane…"},
       {"parte_errata":"correvano","c":"correttezza","tipo":"morfosintassi","indizio":"Quanti cani correvano? Il verbo è d'accordo con il soggetto?","spiegazione":"Il cane è uno solo: il verbo va al singolare (correva).","proposta_corretta":"…un cane che correva nel parco."}],
      "registri":{"formale":"Ieri ho osservato un cane che correva nel parco.","standard":"Ieri ho visto un cane che correva nel parco.","informale":"Ieri ho beccato un cane che correva al parco.","adatto":"standard","perche":"Nella voce narrante del racconto si usa il registro standard."}},
     {"frase_originale":"Quando arrivai a casa, la mamma mi dice che era tardi.","errore_trovato":true,"errori":[

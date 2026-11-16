@@ -13,10 +13,14 @@
       "sbagliato": "Ieri o visto un cane che correvano nel parco",
       "corretto": "Ieri ho visto un cane che correva nel parco.",
       "tipi": {
-        "ortografia": { "nome": "Ortografia", "colore": "#FF5C7A" },
-        "morfosintassi": { "nome": "Grammatica (morfosintassi)", "colore": "#FF8FA3" },
-        "tempi_verbali": { "nome": "Tempi verbali", "colore": "#FFB0BF" },
-        "punteggiatura": { "nome": "Punteggiatura", "colore": "#E8668A" }
+        "ortografia": { "nome": "Ortografia", "colore": "#FF5C7A",
+          "particolari": ["accento", "apostrofo ed elisione", "troncamento (po', qual è)", "h del verbo avere", "doppie", "gruppi di lettere (cq, qu, gn, gli, sc, cie)", "maiuscole", "parole unite o separate (a posto, a volte, d'accordo)"] },
+        "morfosintassi": { "nome": "Morfologia", "colore": "#FF8FA3",
+          "particolari": ["concordanza soggetto-verbo", "concordanza nome-aggettivo o participio", "articolo", "pronome (gli, le, li, ne, ci)", "preposizione", "ausiliare essere/avere", "modo verbale (congiuntivo, condizionale, periodo ipotetico)", "plurale o femminile irregolare"] },
+        "tempi_verbali": { "nome": "Tempi verbali", "colore": "#FFB0BF",
+          "particolari": ["salto di tempo", "passato remoto e imperfetto", "concordanza dei tempi", "futuro anteriore"] },
+        "punteggiatura": { "nome": "Punteggiatura", "colore": "#E8668A",
+          "particolari": ["virgola tra soggetto e verbo", "virgola mancante (elenco, inciso, vocativo)", "punto mancante o frase troppo lunga", "due punti e discorso diretto", "punto interrogativo o esclamativo", "virgolette"] }
       }
     },
     "chiarezza": {
@@ -25,8 +29,10 @@
       "sbagliato": "Ho fatto una cosa bella con delle cose che avevo fatto prima che era bello.",
       "corretto": "Ho costruito un plastico con i cartoncini che avevo ritagliato il giorno prima.",
       "tipi": {
-        "sintassi": { "nome": "Costruzione della frase", "colore": "#FFB733" },
-        "lessico": { "nome": "Lessico (parole)", "colore": "#FFDB80" }
+        "sintassi": { "nome": "Sintassi", "colore": "#FFB733",
+          "particolari": ["anacoluto", "che polivalente", "frase incompleta (manca soggetto o verbo)", "periodo troppo lungo o contorto", "ordine delle parole", "frase ambigua", "ridondanza (a me mi, di lui il suo)"] },
+        "lessico": { "nome": "Lessico", "colore": "#FFDB80",
+          "particolari": ["ripetizione", "parola generica (cosa, fare, bello)", "parola impropria", "espressione dialettale o regionale", "pleonasmo (salire su, uscire fuori)"] }
       }
     },
     "coesione": {
@@ -35,8 +41,10 @@
       "sbagliato": "Ho un cane. Il cane si chiama Rex. Il cane è vivace. Il cane gioca.",
       "corretto": "Ho un cane che si chiama Rex: è molto vivace e gioca sempre.",
       "tipi": {
-        "connettivi": { "nome": "Connettivi", "colore": "#2FD68C" },
-        "riferimenti": { "nome": "Pronomi e riferimenti", "colore": "#8AF0C2" }
+        "connettivi": { "nome": "Connettivi", "colore": "#2FD68C",
+          "particolari": ["connettivo mancante", "connettivo ripetuto", "connettivo sbagliato (ma, quindi, perché)"] },
+        "riferimenti": { "nome": "Pronomi e riferimenti", "colore": "#8AF0C2",
+          "particolari": ["pronome ambiguo", "ripetizione al posto del pronome", "pronome senza riferimento"] }
       }
     },
     "coerenza": {
@@ -45,10 +53,25 @@
       "sbagliato": "Era una notte buia, senza luna. La luna piena illuminava la strada.",
       "corretto": "Era una notte buia, senza luna. Solo un vecchio lampione illuminava la strada.",
       "tipi": {
-        "coerenza": { "nome": "Logica e tipologia", "colore": "#9384FF" },
-        "registro": { "nome": "Registro", "colore": "#C9C0FF" }
+        "coerenza": { "nome": "Logica e tipologia", "colore": "#9384FF",
+          "particolari": ["contraddizione", "salto logico", "ordine delle idee", "fuori traccia", "criterio della tipologia non rispettato"] },
+        "registro": { "nome": "Registro", "colore": "#C9C0FF",
+          "particolari": ["troppo colloquiale", "troppo ricercato", "registro che cambia nel testo"] }
       }
     }
+  },
+
+  "sigle_insegnante": {
+    "_istruzioni": "Come l'insegnante segna gli errori sul tema → tipo di errore usato dall'app. Aggiungete qui le vostre sigle o abbreviazioni.",
+    "ortografia": "ortografia", "orto": "ortografia", "ort.": "ortografia",
+    "punteggiatura": "punteggiatura", "punt.": "punteggiatura",
+    "morfologia": "morfosintassi", "morf.": "morfosintassi", "grammatica": "morfosintassi",
+    "sintassi": "sintassi", "sint.": "sintassi", "anacoluto": "sintassi",
+    "lessico": "lessico", "less.": "lessico", "rip.": "lessico", "ripetizione": "lessico",
+    "tempi": "tempi_verbali", "tempo verbale": "tempi_verbali",
+    "connettivo": "connettivi", "coesione": "connettivi",
+    "coerenza": "coerenza", "fuori traccia": "coerenza",
+    "registro": "registro"
   },
 
   "registri": {

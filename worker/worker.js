@@ -9,11 +9,45 @@ const GEMINI_RISERVA = "gemini-flash-lite-latest"; // usato da solo se il primo 
 const CLAUDE_MODEL = "claude-haiku-5-5";      // modello Claude da usare se PROVIDER = "claude"
 const ORIGINE_PERMESSA = "https://comprensivoalmese.github.io";
 const MAX_CARATTERI = 4000;
+// Dove il worker legge i casi-guida e i sottotipi scritti dai docenti (si aggiornano da GitHub, senza ripubblicare il worker)
+const DATI_URL = "https://comprensivoalmese.github.io/lupus-in-fabula/data/";
+const MAX_CASI = 40;
 
-const SCHEMA = `{"frasi":[{"frase_originale":"","errore_trovato":true,"errori":[{"parte_errata":"","c":"correttezza|chiarezza|coesione|coerenza","tipo":"ortografia|morfosintassi|tempi_verbali|punteggiatura|sintassi|lessico|connettivi|riferimenti|coerenza|registro","indizio":"","spiegazione":"","proposta_corretta":""}],"registri":{"formale":"","standard":"","informale":"","adatto":"formale|standard|informale","perche":""}}],"lessico":[{"parola":"","ripetizioni":2,"sinonimi":[""]}],"scheda_4c":{"correttezza":{"punto_di_forza":"","consiglio":""},"chiarezza":{"punto_di_forza":"","consiglio":""},"coesione":{"punto_di_forza":"","consiglio":""},"coerenza":{"punto_di_forza":"","consiglio":""}},"scheda_tipologia":{"criteri_rispettati":[""],"criteri_da_migliorare":[""]},"categorie_da_esercitare":[""],"commento_positivo":""}`;
+async function leggiDati(nome) {
+  try {
+    const r = await fetch(DATI_URL + nome, { cf: { cacheTtl: 300 } }); // copia aggiornata ogni 5 minuti
+    return r.ok ? await r.json() : null;
+  } catch (e) { return null; }
+}
 
-function promptDiSistema(d) {
+function guidaDocenti(tip, casi) {
+  let t = "";
+  if (tip && tip.quattro_c) {
+    t += "\nSOTTOTIPI (usa il campo \"sottotipo\" con una di queste voci, o una voce breve simile):\n";
+    for (const c of Object.values(tip.quattro_c))
+      for (const [id, x] of Object.entries(c.tipi || {}))
+        if (x.particolari) t += `- ${id}: ${x.particolari.join("; ")}\n`;
+  }
+  if (tip && tip.sigle_insegnante) {
+    const s = Object.entries(tip.sigle_insegnante).filter(([k]) => !k.startsWith("_")).map(([k, v]) => `"${k}"→${v}`).join(", ");
+    t += `\nSIGLE CHE GLI INSEGNANTI SCRIVONO SUL TEMA (la nota dell'insegnante indica il tipo di errore): ${s}\n`;
+  }
+  if (casi && Array.isArray(casi.casi) && casi.casi.length) {
+    t += "\nCASI-GUIDA: errori veri corretti dagli insegnanti di questa scuola. Riconosci gli errori dello stesso tipo e spiegali con lo stesso stile:\n";
+    for (const k of casi.casi.slice(-MAX_CASI))
+      t += `- «${k.frase}» → ${k.c}/${k.tipo}${k.sottotipo ? " (" + k.sottotipo + ")" : ""}: ${k.spiegazione} Correzione: «${k.correzione}»\n`;
+  }
+  return t;
+}
+
+const SCHEMA = `{"frasi":[{"frase_originale":"","errore_trovato":true,"errori":[{"parte_errata":"","c":"correttezza|chiarezza|coesione|coerenza","tipo":"ortografia|morfosintassi|tempi_verbali|punteggiatura|sintassi|lessico|connettivi|riferimenti|coerenza|registro","sottotipo":"","indizio":"","spiegazione":"","proposta_corretta":""}],"registri":{"formale":"","standard":"","informale":"","adatto":"formale|standard|informale","perche":""}}],"lessico":[{"parola":"","ripetizioni":2,"sinonimi":[""]}],"scheda_4c":{"correttezza":{"punto_di_forza":"","consiglio":""},"chiarezza":{"punto_di_forza":"","consiglio":""},"coesione":{"punto_di_forza":"","consiglio":""},"coerenza":{"punto_di_forza":"","consiglio":""}},"scheda_tipologia":{"criteri_rispettati":[""],"criteri_da_migliorare":[""]},"categorie_da_esercitare":[""],"commento_positivo":""}`;
+
+function promptDiSistema(d, guida) {
   const t = d.tipologia || {};
+  return promptBase(d, t) + (guida || "");
+}
+
+function promptBase(d, t) {
   return `Sei un insegnante di italiano della scuola secondaria di primo grado che aiuta un alunno di ${d.classe}ª media (11-14 anni) ad AUTOCORREGGERE il proprio testo.
 Livello: ${d.livello || ""}
 Tipologia del testo: ${t.nome}. Criteri di coerenza di questa tipologia:
@@ -32,6 +66,7 @@ REGOLE
 - Se non trovi un errore certo NON inventarlo: metti "errore_trovato": false ed "errori": [].
 - Valuta coesione e coerenza solo se c'è contesto sufficiente.
 - Correggi solo dove serve. "parte_errata" deve essere copiata ESATTAMENTE dalla frase.
+- "sottotipo" indica l'errore nel dettaglio (es. tipo "ortografia", sottotipo "apostrofo ed elisione"; tipo "sintassi", sottotipo "anacoluto"): scegli dalla lista SOTTOTIPI qui sotto.
 - "indizio" è una domanda-guida che fa ragionare SENZA dare la soluzione.
 - "spiegazione" è breve e per ragazzi e spiega il PERCHÉ (es. "manca il soggetto"); per la coerenza cita il criterio della tipologia.
 - "registri": tre versioni corrette della frase (formale, standard, informale) con lo STESSO significato; "adatto" è quella giusta per la tipologia, "perche" una riga (es. "In un testo informativo si usa il registro standard").
@@ -150,7 +185,13 @@ export default {
     if (lunghezzaTesto(d) > MAX_CARATTERI) return risposta({ errore: "Testo troppo lungo" }, 413, origine);
 
     try {
-      const sistema = d.modalita === "sinonimi" ? promptSinonimi(d) : promptDiSistema(d), utente = messaggioUtente(d);
+      let sistema;
+      if (d.modalita === "sinonimi") sistema = promptSinonimi(d);
+      else {
+        const [tip, casi] = await Promise.all([leggiDati("tipologie.json"), leggiDati("casi.json")]);
+        sistema = promptDiSistema(d, guidaDocenti(tip, casi));
+      }
+      const utente = messaggioUtente(d);
       const testo = PROVIDER === "claude"
         ? await chiamaClaude(sistema, utente, env.API_KEY)
         : await chiamaGemini(sistema, utente, env.API_KEY);

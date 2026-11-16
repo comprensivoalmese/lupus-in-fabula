@@ -38,7 +38,14 @@ File `data/tipologie.json`:
 - `tipologie`: definizione, struttura, esempio, **criteri** (vengono passati all'IA) e registro consigliato;
 - `quattro_c`: definizioni, esempi e colori delle 4 C.
 
-## 6. Proponi sinonimi
+## 6. Insegnare al correttore con gli errori veri dei temi
+L'IA non impara da sola e l'app non salva le frasi degli alunni. Potete però darle **esempi**: li legge a ogni analisi. Le modifiche valgono dopo circa 5 minuti e non serve ripubblicare il worker.
+- **`data/casi.json`, il quaderno dei casi-guida.** Quando trovate un errore tipico in un tema, copiate un blocco e scrivete la frase, il tipo, il sottotipo, la spiegazione e la correzione. Il correttore riconoscerà meglio quel tipo di errore e lo spiegherà con il vostro stile. Usa gli ultimi 40 casi. Niente nomi veri degli alunni.
+- **`particolari` in `data/tipologie.json`.** Sono i sottotipi di ogni errore (es. ortografia → apostrofo, doppie, h…). Compaiono sull'etichetta dell'errore e nella guida «Cosa sono le 4 C?». Potete aggiungerne.
+- **`sigle_insegnante` in `data/tipologie.json`.** Sono le parole o le sigle che scrivete sul tema (ortografia, punteggiatura, morfologia, sintassi, lessico, «rip.», «anac.»…) con il tipo di errore corrispondente. L'alunno le riporta nel campo «Cosa ha segnato l'insegnante?».
+- Per modificare un file su GitHub: apritelo → ✏️ (Edit) → cambiate → **Commit changes**.
+
+## 6b. Proponi sinonimi
 Nella pagina c'è il riquadro «Proponi sinonimi»: l'alunno scrive una parola (e, se vuole, la frase in cui l'ha usata) e l'IA propone 4-6 alternative, con significato, esempio e registro. Le istruzioni per l'IA sono nel worker, nella funzione `promptSinonimi`.
 
 ## 7. Provare in locale (facoltativo)
