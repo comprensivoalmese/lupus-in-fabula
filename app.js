@@ -84,6 +84,7 @@
     $('impostazioni').addEventListener('submit', function (e) { e.preventDefault(); analizza(); });
     $('allenatiTipologie').onclick = allenatiTipologie;
     $('stampa').onclick = stampa;
+    $('formSinonimi').addEventListener('submit', function (e) { e.preventDefault(); sinonimi(); });
     contatore();
   }
 
@@ -139,7 +140,7 @@
       var t = setTimeout(function () { ctrl.abort(); }, ATTESA_MS);
       return fetch(WORKER_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload), signal: ctrl.signal })
         .then(function (r) { clearTimeout(t); if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
-        .then(function (j) { if (!j || !Array.isArray(j.frasi)) throw new Error('json'); return j; });
+        .then(function (j) { if (!j || !(Array.isArray(j.frasi) || Array.isArray(j.sinonimi))) throw new Error('json'); return j; });
     }
     return una().catch(function () { return una(); }); // riprova una volta
   }
@@ -182,6 +183,32 @@
       esito.className = 'esito errore';
       esito.textContent = 'Il correttore non risponde, riprova tra un minuto. Il tuo testo è ancora qui.';
     }).then(function () { b.disabled = false; b.textContent = 'Analizza 🔍'; });
+  }
+
+  // ===== SINONIMI =====
+  function sinonimi() {
+    var parola = $('sinParola').value.trim(), out = $('sinEsito'), box = $('sinRisultato');
+    out.className = 'esito';
+    if (!parola) { out.textContent = 'Scrivi la parola che vuoi sostituire.'; $('sinParola').focus(); return; }
+    var id = tipologiaId(), t = id ? D.tip.tipologie[id] : null;
+    var p = {
+      modalita: 'sinonimi', classe: classe(), livello: D.tip.classi[classe()],
+      tipologia: t ? { id: id, nome: t.nome, registro_consigliato: t.registro_consigliato, registro_note: t.registro_note } : { nome: 'non indicata' },
+      sinonimi: { parola: parola, frase: $('sinFrase').value.trim() }
+    };
+    var b = $('sinCerca'); b.disabled = true; out.textContent = 'Cerco le parole giuste…'; box.innerHTML = '';
+    chiama(p).then(function (r) {
+      var l = r.sinonimi || [];
+      out.textContent = '';
+      if (!l.length) { out.textContent = 'Non ho trovato sinonimi adatti: prova a scrivere anche la frase, oppure chiedi all\'insegnante.'; return; }
+      box.innerHTML = '<div class="lessico"><p class="promemoria">⚠️ ' + esc(D.tip.avviso.promemoria) + '</p>' +
+        (r.nota ? '<p>💡 ' + esc(r.nota) + '</p>' : '') + '<ul>' + l.map(function (s) {
+          return '<li><b>' + esc(s.parola) + '</b>' + (s.registro ? ' <small>(' + esc(s.registro) + ')</small>' : '') +
+            (s.significato ? ': ' + esc(s.significato) : '') + (s.esempio ? '<br><i>«' + esc(s.esempio) + '»</i>' : '') + '</li>';
+        }).join('') + '</ul></div>';
+    }).catch(function () {
+      out.className = 'esito errore'; out.textContent = 'Il correttore non risponde, riprova tra un minuto.';
+    }).then(function () { b.disabled = false; });
   }
 
   // ===== RISULTATI =====

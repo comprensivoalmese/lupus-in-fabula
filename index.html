@@ -21,7 +21,7 @@
     <div><b>WOLF <span>TEAM</span></b><small>Istituto Comprensivo di Almese</small></div>
   </a>
   <nav aria-label="Sezioni">
-    <a href="#impostazioni">Correggi</a><a href="#guide">Le 4 C e le tipologie</a><a href="#esercizi">Allenati</a>
+    <a href="#impostazioni">Correggi</a><a href="#sinonimi">Sinonimi</a><a href="#guide">Le 4 C e le tipologie</a><a href="#esercizi">Allenati</a>
   </nav>
 </header>
 
@@ -102,6 +102,20 @@
     <div id="barre" class="barre"></div>
     <div id="allenati"></div>
     <div id="schede"></div>
+  </section>
+
+  <section id="sinonimi" class="scheda" aria-labelledby="titSinonimi">
+    <h2 id="titSinonimi">💬 Proponi sinonimi</h2>
+    <p class="aiuto">Hai ripetuto una parola o ne hai usata una troppo generica (cosa, fare, bello…)? Scrivila qui e scopri come sostituirla.</p>
+    <form id="formSinonimi" novalidate>
+      <div class="riga">
+        <label class="campo-l">La parola<input id="sinParola" type="text" maxlength="40" autocomplete="off"></label>
+        <label class="campo-l">La frase in cui l'hai usata <small>(facoltativa: aiuta a scegliere il sinonimo giusto)</small><input id="sinFrase" type="text" maxlength="400"></label>
+      </div>
+      <button class="bottone" id="sinCerca" type="submit">Proponi sinonimi</button>
+    </form>
+    <p class="esito" id="sinEsito" role="status" aria-live="polite"></p>
+    <div id="sinRisultato"></div>
   </section>
 
   <section id="esercizi" class="scheda" aria-labelledby="titEsercizi">

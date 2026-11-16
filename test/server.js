@@ -15,7 +15,14 @@ http.createServer((req, res) => {
       // ogni 7ª chiamata risponde con JSON rotto: serve a provare il "riprova una volta"
       if (chiamate % 7 === 0) { res.writeHead(200, { "Content-Type": "application/json" }); return res.end("{rotto"); }
       let r;
-      if (d.modalita === "verifica") {
+      if (d.modalita === "sinonimi") {
+        r = { sinonimi: [
+          { parola: "piacevole", significato: "che fa stare bene", esempio: "La gita è stata piacevole.", registro: "standard" },
+          { parola: "divertente", significato: "che fa ridere e giocare", esempio: "La gita è stata divertente.", registro: "standard" },
+          { parola: "indimenticabile", significato: "che non si dimentica", esempio: "La gita è stata indimenticabile.", registro: "standard" },
+          { parola: "una figata", significato: "molto bella (colloquiale)", esempio: "La gita è stata una figata.", registro: "informale" }],
+          nota: "«Bello» è una parola generica: scegli quella che dice esattamente com'era." };
+      } else if (d.modalita === "verifica") {
         const ok = !/ o visto|correvano| dice |che gli|bello\.|e lui| quindi |sole illuminava|roba/.test(" " + d.verifica.frase_riscritta + " ");
         r = { frasi: [ok ? { frase_originale: d.verifica.frase_riscritta, errore_trovato: false, errori: [] }
           : { frase_originale: d.verifica.frase_riscritta, errore_trovato: true, errori: [{ indizio: "Rileggi la parte evidenziata: è cambiata davvero?" }] }] };

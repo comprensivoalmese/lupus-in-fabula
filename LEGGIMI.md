@@ -38,8 +38,11 @@ File `data/tipologie.json`:
 - `tipologie`: definizione, struttura, esempio, **criteri** (vengono passati all'IA) e registro consigliato;
 - `quattro_c`: definizioni, esempi e colori delle 4 C.
 
-## 6. Provare in locale (facoltativo)
+## 6. Proponi sinonimi
+Nella pagina c'è il riquadro «Proponi sinonimi»: l'alunno scrive una parola (e, se vuole, la frase in cui l'ha usata) e l'IA propone 4-6 alternative, con significato, esempio e registro. Le istruzioni per l'IA sono nel worker, nella funzione `promptSinonimi`.
+
+## 7. Provare in locale (facoltativo)
 Con Node.js installato: `node test/server.js` e apri <http://localhost:8787>. Risponde un correttore finto (`test/finto.json`), senza IA.
 
-## 7. Pubblicare su GitHub
+## 8. Pubblicare su GitHub
 Carica tutti i file (tranne, se volete, la cartella `test`) con **Add file → Upload files**. Poi vai su **Settings → Pages**, scegli il branch **main** e premi **Save**.
