@@ -47,8 +47,8 @@
 
   // ===== AVVIO =====
   Promise.all([
-    fetch('data/tipologie.json').then(function (r) { return r.json(); }),
-    fetch('data/esercizi.json').then(function (r) { return r.json(); })
+    fetch('data/tipologie.json', { cache: 'no-cache' }).then(function (r) { return r.json(); }),
+    fetch('data/esercizi.json', { cache: 'no-cache' }).then(function (r) { return r.json(); })
   ]).then(function (v) {
     D.tip = v[0]; D.es = v[1].esercizi;
     avvia();
