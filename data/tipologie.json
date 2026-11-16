@@ -1,7 +1,7 @@
 {
   "avviso": {
     "titolo": "Prima di iniziare, leggi qui 💡",
-    "testo": "Questo correttore usa l'intelligenza artificiale: è un aiuto per capire i tuoi errori, non l'ultima parola. A volte può sbagliare anche lui! Se una spiegazione non ti convince o non coincide con quello che ha segnato l'insegnante, chiedi in classe: ha sempre ragione l'insegnante. Non scrivere il tuo cognome, indirizzi o informazioni personali nelle frasi.",
+    "testo": "Questo correttore usa l'intelligenza artificiale: è un aiuto per capire i tuoi errori. A volte può sbagliare anche lui! Se una spiegazione non ti convince o non coincide con quello che ha segnato l'insegnante, chiedi in classe: l'insegnante ha l'ultima parola. Non scrivere il tuo cognome, indirizzi o informazioni personali nelle frasi.",
     "promemoria": "Correzione automatica: se hai dubbi, chiedi all'insegnante.",
     "nessun_errore": "Non riesco a trovare l'errore in questa frase. Chiedi all'insegnante di spiegartelo!"
   },

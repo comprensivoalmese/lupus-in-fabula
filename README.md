@@ -33,7 +33,7 @@ Ci sono anche:
 - **Cosa sono le 4 C?** e **Le tipologie testuali**, spiegazioni con esempi.
 
 ## Da sapere prima di iniziare 💡
-- Il correttore usa l'**intelligenza artificiale**: è un aiuto, non l'ultima parola, e a volte può sbagliare. Se una spiegazione non ti convince, chiedi in classe: **ha sempre ragione l'insegnante**.
+- Il correttore usa l'**intelligenza artificiale**: è un aiuto e a volte può sbagliare. Se una spiegazione non ti convince, chiedi in classe: **l'insegnante ha l'ultima parola**.
 - **Non scrivere il tuo cognome, indirizzi o altre informazioni personali** nelle frasi. Nel resoconto basta il nome.
 - I tuoi testi **non vengono salvati**: servono solo per la correzione e spariscono quando chiudi la pagina.
 
