@@ -5,6 +5,7 @@
 // ===== IMPOSTAZIONI (per cambiare IA basta modificare queste righe) =====
 const PROVIDER = "gemini";                    // "gemini" oppure "claude"
 const GEMINI_MODEL = "gemini-flash-latest";   // modello Flash più recente di Google
+const GEMINI_RISERVA = "gemini-flash-lite-latest"; // usato da solo se il primo è sovraccarico
 const CLAUDE_MODEL = "claude-haiku-5-5";      // modello Claude da usare se PROVIDER = "claude"
 const ORIGINE_PERMESSA = "https://comprensivoalmese.github.io";
 const MAX_CARATTERI = 4000;
@@ -62,7 +63,16 @@ function lunghezzaTesto(d) {
 }
 
 async function chiamaGemini(sistema, utente, chiave) {
-  const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`, {
+  try { return await chiamaGeminiModello(GEMINI_MODEL, sistema, utente, chiave); }
+  catch (e) {
+    if (!/gemini (429|5\d\d)/.test(e.message)) throw e;
+    return await chiamaGeminiModello(GEMINI_RISERVA, sistema, utente, chiave);
+  }
+}
+
+async function chiamaGeminiModello(modello, sistema, utente, chiave) {
+  const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modello}:generateContent`, {
+    signal: AbortSignal.timeout(40000),
     method: "POST",
     headers: { "Content-Type": "application/json", "x-goog-api-key": chiave },
     body: JSON.stringify({
@@ -71,7 +81,7 @@ async function chiamaGemini(sistema, utente, chiave) {
       generationConfig: { responseMimeType: "application/json", temperature: 0.2 }
     })
   });
-  if (!r.ok) throw new Error("gemini " + r.status);
+  if (!r.ok) throw new Error("gemini " + r.status + " " + (await r.text()).slice(0, 300));
   const j = await r.json();
   return j.candidates[0].content.parts.map(p => p.text || "").join("");
 }
@@ -82,7 +92,7 @@ async function chiamaClaude(sistema, utente, chiave) {
     headers: { "Content-Type": "application/json", "x-api-key": chiave, "anthropic-version": "2023-06-01" },
     body: JSON.stringify({ model: CLAUDE_MODEL, max_tokens: 4096, system: sistema, messages: [{ role: "user", content: utente }] })
   });
-  if (!r.ok) throw new Error("claude " + r.status);
+  if (!r.ok) throw new Error("claude " + r.status + " " + (await r.text()).slice(0, 300));
   const j = await r.json();
   return j.content.filter(b => b.type === "text").map(b => b.text).join("");
 }
@@ -126,7 +136,8 @@ export default {
       if (!Array.isArray(json.frasi)) throw new Error("schema");
       return risposta(json, 200, origine);
     } catch (e) {
-      return risposta({ errore: "Il correttore non ha risposto correttamente" }, 502, origine);
+      console.log("Errore IA:", e.message); // visibile su Cloudflare in Workers → Logs
+      return risposta({ errore: "Il correttore non ha risposto correttamente", dettaglio: String(e.message).slice(0, 300) }, 502, origine);
     }
   }
 };

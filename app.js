@@ -8,7 +8,7 @@
   // In locale (prove) si usa il worker finto di test/server.js
   if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) WORKER_URL = '/api';
   var MAX_CARATTERI = 4000;
-  var ATTESA_MS = 45000;
+  var ATTESA_MS = 90000;
 
   var D = { tip: null, es: [] };
   var S = { modo: 'frasi', richiesta: null, risultato: null, prove: [], esercizi: {}, mostrati: [] };
