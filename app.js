@@ -4,7 +4,7 @@
 
   // ===== CONFIGURAZIONE =====
   // Dopo aver pubblicato il worker su Cloudflare, incolla qui il suo indirizzo (vedi LEGGIMI.md).
-  var WORKER_URL = 'https://officina-scrittura.NOME-ACCOUNT.workers.dev';
+  var WORKER_URL = 'https://officina-scrittura.icalmese-wolf.workers.dev';
   // In locale (prove) si usa il worker finto di test/server.js
   if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) WORKER_URL = '/api';
   var MAX_CARATTERI = 4000;
